@@ -18,6 +18,8 @@ const startPieces = [
 
 function createBoard (){
     startPieces.forEach((startPiece, i) => {
+        reverseIds()
+        
         const square = document.createElement('div')
         square.classList.add('square')
         square.innerHTML = startPiece
@@ -33,10 +35,10 @@ function createBoard (){
         }
 
         if (i <= 15 ){
-            square.firstChild.firstChild.classList.add('white')
+            square.firstChild.firstChild.classList.add('black')
         }
         if (i >= 48 ){
-            square.firstChild.firstChild.classList.add('black')
+            square.firstChild.firstChild.classList.add('white')
         }
 
         gameBoard.append(square)
@@ -297,11 +299,11 @@ function checkIfValid(target){
 
 function changePlayer() {
     if(playerGo === 'white'){
-        reverseIds()
+        revertIds()
         playerGo = 'black'
         playerDisplay.textContent = 'black'
     }else{
-        revertIds()
+        reverseIds()
         playerGo = 'white'
         playerDisplay.textContent = 'white'
     }

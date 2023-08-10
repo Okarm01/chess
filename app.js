@@ -108,7 +108,7 @@ function checkIfValid(target){
             const starterRow = [8,9,10,11,12,13,14,15]
             if (
                 starterRow.includes(startId) && startId + width * 2 === targetId ||
-                startId + width === targetId ||
+                startId + width === targetId && !document.querySelector(`[square-id='${startId + width}']`).firstChild ||
                 startId + width -1 === targetId && document.querySelector(`[square-id='${startId + width -1}']`).firstChild ||
                 startId + width +1 === targetId && document.querySelector(`[square-id='${startId + width +1}']`).firstChild
                 ){
@@ -323,7 +323,7 @@ function revertIds(){
 function checkForWin(){
     const kings = Array.from(document.querySelectorAll('#king'))
     if (!kings.some(king => king.firstChild.classList.contains('white'))) {
-        infoDisplay.innerHTML = 'Black player wins'
+        infoDisplay.innerHTML = 'White player wins'
         const allSquares = document.querySelectorAll('.square')
         allSquares.forEach(square => square.firstChild?.setAttribute('draggable', false)) 
     }

@@ -74,6 +74,7 @@ function dragDrop (e) {
     const valid = checkIfValid(e.target)
     const opponentGo = playerGo === 'black' ? 'white' : 'black'
     const takenByOpponent = e.target.firstChild?.classList.contains(opponentGo)
+    
 
     if(correctGo){
         if(takenByOpponent && valid){
@@ -84,6 +85,11 @@ function dragDrop (e) {
             return
         }
         if (taken && !takenByOpponent){
+            infoDisplay.textContent = "you cannot go here!"
+            setTimeout(()=> infoDisplay.textContent = "", 2000)
+            return
+        }
+        if (!valid){
             infoDisplay.textContent = "you cannot go here!"
             setTimeout(()=> infoDisplay.textContent = "", 2000)
             return
